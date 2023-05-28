@@ -1,0 +1,57 @@
+graph={
+    'A':['B','C'],
+    'B':['D','E'],
+    'C':['F'],
+    'D':[],
+    'E':['F'],
+    'F':[]
+}
+
+visited=[]
+queue=[]
+
+def bfs(visited,graph,node):
+    visited.append(node)
+    queue.append(node)
+    while(queue):
+        s=queue.pop(0)
+        print(s,end=" ")
+        for neighbour in graph[s]:
+            if neighbour not in visited:
+                visited.append(neighbour)
+                queue.append(neighbour)
+
+bfs(visited,graph,'B')
+
+The code defines a graph using a dictionary where each key represents a node, and the corresponding value is a list of nodes that are directly reachable from the key node.
+
+The code also initializes two lists:
+
+visited: An empty list to keep track of visited nodes.
+queue: An empty list that acts as a queue to store nodes to be visited in a breadth-first order.
+The function bfs takes three parameters:
+
+visited: A list to keep track of visited nodes.
+graph: A dictionary representing the graph structure.
+node: The starting node for the BFS traversal.
+Here's a step-by-step breakdown of the code:
+
+The function starts by appending the node parameter to the visited list using visited.append(node). This marks the starting node as visited.
+
+The starting node is then appended to the queue list using queue.append(node). This adds the starting node to the queue to begin the BFS traversal.
+
+The code enters a while loop with the condition while(queue), which means the loop continues until the queue is empty.
+
+Inside the loop, the first element of the queue is removed using s = queue.pop(0). The pop(0) operation removes and returns the first element in the list, simulating a queue's behavior.
+
+The value of the removed node, s, is printed using print(s, end=" "). This displays the node value during the traversal.
+
+The code then iterates over the neighbors of the current node, s, using the line for neighbour in graph[s]:. It retrieves the list of neighbors connected to the current node from the graph dictionary.
+
+For each neighbor, the code checks if it has not been visited before using the condition if neighbour not in visited:. If the neighbor is not visited, the following steps are executed:
+
+The neighbor is appended to the visited list using visited.append(neighbour).
+The neighbor is added to the end of the queue list using queue.append(neighbour). This ensures that the neighbor's neighbors will be visited in the subsequent iterations.
+The process continues until the queue is empty, and all reachable nodes have been visited.
+
+To summarize, the bfs function implements the BFS algorithm by exploring the graph in a breadth-first order, starting from a given node. It uses a queue to keep track of nodes to visit, ensuring that nodes at the same level are visited before moving deeper into the graph. The result is that the nodes are printed in the order they are visited during the BFS traversal. In the provided code, the BFS traversal is initiated from the node 'B' by calling bfs(visited, graph, 'B').
